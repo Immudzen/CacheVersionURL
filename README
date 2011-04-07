@@ -1,0 +1,8 @@
+This object creates versioned urls based on the bobobase_modification_time so that urls can be cached
+for a very long time.
+
+First add a CacheVersionURL object and then to use it you call it with
+
+CacheVersionURL.version_absolute_url(yourobject)
+
+CacheVersionURL.version_absolute_url_path(yourobject)
