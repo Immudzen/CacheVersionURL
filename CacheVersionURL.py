@@ -96,7 +96,6 @@ class CacheVersionURL(SimpleItem):
             local_path = self.absolute_url_path()
             parent_path = local_path.replace('/'+self.id, '')
             obj_path = obj.absolute_url_path()
-            log('path', (parent_path, local_path, obj_path))
             return local_path + version + obj_path.replace(parent_path, '')
             
             
