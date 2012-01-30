@@ -81,18 +81,20 @@ class CacheVersionURL(SimpleItem):
             return ''.join(temp)
             
         security.declarePublic('absolute_url')
-        def version_absolute_url(self, obj, relative=0):
+        def version_absolute_url(self, obj, relative=0, date=None):
             """Return the absolute URL of the object"""
-            version = '/%s%s' % (self.prefix, int(obj.bobobase_modification_time().timeTime()))
+            date = date if date is not None else obj.bobobase_modification_time()
+            version = '/%s%s' % (self.prefix, int(date.timeTime()))
             local_url = self.absolute_url(relative)
             parent_url = local_url.replace('/'+self.id, '')
             obj_url = obj.absolute_url(relative)
             return local_url + version + obj_url.replace(parent_url, '')
 
         security.declarePublic('absolute_url_path')
-        def version_absolute_url_path(self, obj):
+        def version_absolute_url_path(self, obj,date=None):
             """Return the absolute URL of the object"""
-            version = '/%s%s' % (self.prefix, int(obj.bobobase_modification_time().timeTime()))
+            date = date if date is not None else obj.bobobase_modification_time()
+            version = '/%s%s' % (self.prefix, int(date.timeTime()))
             local_path = self.absolute_url_path()
             parent_path = local_path.replace('/'+self.id, '')
             obj_path = obj.absolute_url_path()
